@@ -1,0 +1,48 @@
+# Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+
+
+
+# Auto-generated VS/MD/VSCode project files
+.vscode/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+
+# Unity Package Manager
+/[Pp]ackages/manifest.json
+/[Pp]ackages/packages-lock.json
+
+# PlasticSCM files
+.plastic/
+[Oo]bjects/
+
+# Generated files
+/[Aa]ssets/Plugins/Editor/JetBrains*
+/[Aa]ssets/Plugins/Editor/resharper-unity*
+
+# Crash reports
+sysinfo.txt
+
+# Gradle cache (Android)
+.gradle/
+
+*.apk
+*.aab
+
+.DS_Store
+
+.fake
