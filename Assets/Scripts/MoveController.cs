@@ -25,7 +25,10 @@ public class MoveController : MonoBehaviour
         X = Input.GetAxis("Horizontal");
         Z = Input.GetAxis("Vertical");
         Vector3 input = new Vector3(X, 0, Z);
-        input.Normalize();
+        
+        if (input.magnitude > 1)
+            input.Normalize();
+        
         Vector3 move = transform.TransformDirection(input);
         cc.Move(move*Time.deltaTime*MoveSpeed());
 

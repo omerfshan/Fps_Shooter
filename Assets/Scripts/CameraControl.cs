@@ -10,7 +10,7 @@ public class CameraControl : MonoBehaviour
 
     private float yaw;   // body Y
     private float pitch; // head X
-
+  
     void Start()
     {
         if (isLocked)
@@ -28,6 +28,7 @@ public class CameraControl : MonoBehaviour
     {
         float mouseX = Input.GetAxis("Mouse X") * _sensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * _sensitivity;
+
 
         yaw   += mouseX;      
         pitch -= mouseY;      

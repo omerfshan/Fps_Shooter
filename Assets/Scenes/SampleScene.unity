@@ -700,7 +700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterHead: {fileID: 1215039052}
   _characterBody: {fileID: 495397805}
-  _sensitivity: 10
+  _sensitivity: 3
   isLocked: 1
 --- !u!114 &495397808
 MonoBehaviour:
