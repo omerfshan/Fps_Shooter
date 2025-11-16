@@ -3,7 +3,7 @@ using Unity.Mathematics;
 
 public class CameraControl : MonoBehaviour
 {
-    [SerializeField] private Transform _characterHead;
+     public Transform _characterHead;
     [SerializeField] private Transform _characterBody;
     [SerializeField] private float _sensitivity = 200f;
     [SerializeField] private bool isLocked = true;

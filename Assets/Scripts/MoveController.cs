@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class MoveController : MonoBehaviour
 {
+    // public Stat
     private CharacterController cc;
     private float X, Z;
     [SerializeField] private float RunSpeed;
@@ -75,4 +76,13 @@ public class MoveController : MonoBehaviour
             v=jumpForce;
         }
     }
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+{
+    if (hit.rigidbody != null)
+    {
+        Vector3 pushDir = hit.moveDirection;  // gerçek çarpma yönü
+        hit.rigidbody.AddForce(pushDir * .2f, ForceMode.Impulse);
+    }
+}
+
 }
