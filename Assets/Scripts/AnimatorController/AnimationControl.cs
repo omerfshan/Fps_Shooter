@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class AnimationControl : MonoBehaviour, IAnimation
 {
-    [SerializeField] private Animator animator;
+    private Animator animator;
     [SerializeField] private WeponManager wp;
-    
-    
+
+    void Awake()
+    {
+        animator.GetComponent<Animator>();
+    }
     public void setBool(string ID, bool setControl)
     {
       animator.SetBool(ID,setControl);

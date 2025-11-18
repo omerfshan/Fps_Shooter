@@ -166,7 +166,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeponTransform: {fileID: 212095254}
   cameraControl: {fileID: 495397807}
-  anim: {fileID: 919132148161618344}
+  _fire_ID: 
+  _fire_2_ID: 
+  _reoled_ID: 
 --- !u!1 &295960081
 GameObject:
   m_ObjectHideFlags: 0
@@ -1444,6 +1446,7 @@ GameObject:
   m_Component:
   - component: {fileID: 543450652418833181}
   - component: {fileID: 919132148161618344}
+  - component: {fileID: 919132148161618345}
   m_Layer: 0
   m_Name: arms@beretta
   m_TagString: Untagged
@@ -1473,6 +1476,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &919132148161618345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148161618343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ddd56406e843e4fadab6d729d99ef5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wp: {fileID: 212095255}
 --- !u!1 &977891481464899366
 GameObject:
   m_ObjectHideFlags: 0
