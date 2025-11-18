@@ -7,6 +7,7 @@ public class CameraControl : MonoBehaviour
     [SerializeField] private Transform _characterBody;
     [SerializeField] private float _sensitivity = 200f;
     [SerializeField] private bool isLocked = true;
+ 
 
     private float yaw;   // body Y
     private float pitch; // head X

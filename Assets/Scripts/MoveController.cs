@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class MoveController : MonoBehaviour
 {
-    // public Stat
+    public static MoveController instance;
     private CharacterController cc;
     private float X, Z;
     [SerializeField] private float RunSpeed;
@@ -15,9 +15,12 @@ public class MoveController : MonoBehaviour
     [SerializeField] private float Jumpheight=1.5f;
     [SerializeField] private LayerMask layer;
     [SerializeField] private Transform _groundCheck;
+    public bool isWalking;
+    public bool isRuning;
     void Awake()
     {
         cc = GetComponent<CharacterController>();
+        instance=this;
     }
     void Start()
     {
@@ -26,6 +29,7 @@ public class MoveController : MonoBehaviour
     void Update()
     {    
         Jump();
+        CheckMovement();
         Movement();
         Gravity();
     }
@@ -41,11 +45,29 @@ public class MoveController : MonoBehaviour
         Vector3 move = transform.TransformDirection(input)*MoveSpeed();
         move.y=v;
         cc.Move(move*Time.deltaTime);
-
-
+    }
+    private void CheckMovement()
+    {
+      if (X != 0f || Z != 0f)
+        {
+            if (MoveSpeed() == RunSpeed)
+            {
+                isWalking=false;
+                isRuning=true;
+            }
+            else if (MoveSpeed() == WalkSpeed)
+            {
+                isRuning=false;
+                isWalking = true; 
+            }
+        }
+        else
+        {
+                isRuning=false;
+                isWalking=false;
+        }
 
     }
-
      private bool isGrounded()
     {
         return Physics.CheckSphere(_groundCheck.position,0.4f,layer);

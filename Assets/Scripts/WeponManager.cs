@@ -14,22 +14,22 @@ public class WeponManager : MonoBehaviour
    [SerializeField] private string _reoled_ID;
     [Header("Fire")]
     [SerializeField] private bool _fire;
-  
+    [SerializeField] private ParticleSystem muzzle;
+    [SerializeField] private ParticleSystem shell;
     [SerializeField] private float fireFreq;
     private float fireCount;
     private RaycastHit hit;
     [SerializeField] private  float fireRange;
     [SerializeField] private LayerMask ignore;
     public bool Availability;
-     [Header("Reload Variables")]
     [SerializeField] private bool _reoled; 
     [SerializeField] private int CurrentAmmo;
     [SerializeField] private int MaxAmmo;
     [SerializeField] private int _totalAmmo;
-   
-    [Header("Ammo")]
     [SerializeField]AmmoType ammoType;
     [SerializeField] private int  _5_56,_7_62,_9mm,_45cal,_12ga;
+    [SerializeField] private GameObject[] decals;
+     [SerializeField] private GameObject[] particles;
 
     private void SeTotalAmmo()
     {
@@ -81,31 +81,59 @@ public class WeponManager : MonoBehaviour
         
     }
     public void StartFire()
+{
+    _fire = true;
+
+   
+
+    if (CurrentAmmo <= 1)
+        _anim.setBool(_fire_2_ID, _fire);
+    else
+        _anim.setBool(_fire_ID, _fire);
+ 
+    if (muzzle != null)
+        muzzle.Play();
+    if(shell!=null)
+        shell.Play();
+    CurrentAmmo--;
+    fireCount = Time.time + fireFreq;
+
+    if (Physics.Raycast(Shooter.instance.Camera.position,
+                        Shooter.instance.Camera.forward,
+                        out hit,
+                        fireRange,
+                        ~ignore))
     {
-        _fire=true;
-        if (CurrentAmmo <= 1)
+        if (hit.rigidbody != null)
         {
-              _anim.setBool(_fire_2_ID,_fire);
+            Rigidbody rb = hit.rigidbody;
+            rb.AddForce(-hit.normal * 1000f);
         }
-        else
+        GameObject tempDecal=Instantiate(decals[Random.Range(0,decals.Length)],hit.point,Quaternion.identity);
+       
+        tempDecal.transform.rotation = Quaternion.LookRotation(hit.normal);
+         if (hit.rigidbody != null)
         {
-            _anim.setBool(_fire_ID,_fire);
+            tempDecal.transform.SetParent(hit.transform);
         }
-        CurrentAmmo--;
-        fireCount=Time.time+fireFreq;
-        
-        if(Physics.Raycast(Shooter.instance.Camera.position,Shooter.instance.Camera.forward,out hit, fireRange, ~ignore))
+       
+        // tempDecal.transform.parent=hit.transform;
+        Destroy(tempDecal,15f);
+        for (int i = 0; i < particles.Length; i++)
         {
-          if(hit.rigidbody!=null)
-            {
-                Rigidbody rb = hit.rigidbody;
-                if (rb != null)
+                if (particles[i].tag == hit.transform.tag)
                 {
-                    rb.AddForce(-hit.normal * 1000f);
+                    GameObject tempParticle=Instantiate(particles[i],hit.point,Quaternion.LookRotation(hit.normal));
+                    // particles[i].transform.parent=hit.transform;
+                    Destroy(tempParticle,5f);
                 }
-            }
         }
+        
+
+
     }
+}
+
      public  void EndFire()
     {
         _fire=false;
