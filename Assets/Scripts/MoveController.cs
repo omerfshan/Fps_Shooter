@@ -24,7 +24,7 @@ public class MoveController : MonoBehaviour
         jumpForce=Mathf.Sqrt(2f*Jumpheight*-_gravity);
     }
     void Update()
-    {    Debug.Log("Grounded mı? → " + isGrounded());
+    {    
         Jump();
         Movement();
         Gravity();

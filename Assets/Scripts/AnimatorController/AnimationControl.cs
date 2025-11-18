@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class AnimationControl : MonoBehaviour, IAnimation
 {
-    private Animator animator;
+   [SerializeField] private Animator animator;
     [SerializeField] private WeponManager wp;
 
     void Awake()
     {
-        animator.GetComponent<Animator>();
+        
     }
     public void setBool(string ID, bool setControl)
     {
@@ -37,5 +37,9 @@ public class AnimationControl : MonoBehaviour, IAnimation
     public void WeponDown()
     {
         wp.WeponDown();
+    }
+     public void SetAvailability(int index)
+    {
+        wp.Availability=index==0?false:true;
     }
 }
