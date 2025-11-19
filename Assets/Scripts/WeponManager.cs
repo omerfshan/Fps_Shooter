@@ -53,7 +53,9 @@ public class WeponManager : MonoBehaviour
     [SerializeField] private Quaternion MinScatter;
     [SerializeField] private Quaternion MaxScatter;
     [SerializeField] private Quaternion CurrentScatter;
-
+    [SerializeField] private Vector2 MaxRecoil;
+    [SerializeField] private Vector2 MinRecoil;
+    [SerializeField] private Recoil cameraRecoil;
 
 
     void Awake()
@@ -97,8 +99,8 @@ public class WeponManager : MonoBehaviour
         SetAim();
         CurrentAmmoText.text = CurrentAmmo.ToString();
         TotalAmmoText.text   = _totalAmmo.ToString();
+        // WeponTransform.localRotation=cameraControl._characterHead.localRotation;
         
-
    
         if (Input.GetMouseButtonDown(0) && !_reoled && CurrentAmmo > 0 && Time.time > fireCount && Availability)
         {
@@ -154,13 +156,11 @@ public class WeponManager : MonoBehaviour
         else
             _anim.setBool(_fire_ID, _fire);
     
-        if (muzzle != null)
-            muzzle.Play();
-        if(shell!=null)
-            shell.Play();
+       
+        
         CurrentAmmo--;
         fireCount = Time.time + fireFreq;
-    _fireEndTime = Time.time + fireFreq;  
+        _fireEndTime = Time.time + fireFreq;  
 
         if (Physics.Raycast(Shooter.instance.Camera.position,
                             SetScatter()*
@@ -193,8 +193,12 @@ public class WeponManager : MonoBehaviour
                         Destroy(tempParticle,5f);
                     }
             }
-            
-
+            if (muzzle != null)
+            muzzle.Play();
+        if(shell!=null)
+            shell.Play();
+            setRecol();
+            cameraRecoil.SetTarget();
 
         }
     }
@@ -273,22 +277,28 @@ public class WeponManager : MonoBehaviour
         }
     }
    public void AddAmmo (AmmoType Type, int Amount)
-{
-    if (Type == AmmoType._12ga)
-        _12ga += Amount;
+    {
+        if (Type == AmmoType._12ga)
+            _12ga += Amount;
 
-    else if (Type == AmmoType._5_56)
-        _5_56 += Amount;
+        else if (Type == AmmoType._5_56)
+            _5_56 += Amount;
 
-    else if (Type == AmmoType._7_62)
-        _7_62 += Amount;
+        else if (Type == AmmoType._7_62)
+            _7_62 += Amount;
 
-    else if (Type == AmmoType._9mm)
-        _9mm += Amount;
+        else if (Type == AmmoType._9mm)
+            _9mm += Amount;
 
-    else if (Type == AmmoType._45cal)
-        _45cal += Amount;
-}
+        else if (Type == AmmoType._45cal)
+            _45cal += Amount;
+    }
+    private void setRecol()
+    {
+        float x=Random.Range(MaxRecoil.x,MinRecoil.x);
+        float y=Random.Range(MaxRecoil.y,MinRecoil.y);
+        CameraControl.instance.AddRecoll(x,y);
+    }
 
 
     

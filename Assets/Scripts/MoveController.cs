@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -89,7 +90,7 @@ public class MoveController : MonoBehaviour
         {
             v=-2f;
         }
-        v +=_gravity*Time.deltaTime;
+        v +=-Mathf.Pow(_gravity,2)*Time.deltaTime;
     }
     private void Jump()
     {
@@ -102,7 +103,7 @@ public class MoveController : MonoBehaviour
 {
     if (hit.rigidbody != null)
     {
-        Vector3 pushDir = hit.moveDirection;  // gerçek çarpma yönü
+        Vector3 pushDir = hit.moveDirection; 
         hit.rigidbody.AddForce(pushDir * .2f, ForceMode.Impulse);
     }
 }
