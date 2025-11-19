@@ -73,7 +73,7 @@ public class MoveController : MonoBehaviour
     {
         return Physics.CheckSphere(_groundCheck.position,0.4f,layer);
     }
-    private float MoveSpeed()
+   public float MoveSpeed()
     {
         if (Input.GetKey(KeyCode.LeftShift)&&!WeponManager.instance._fire)
         {

@@ -99,7 +99,7 @@ public class WeponManager : MonoBehaviour
         SetAim();
         CurrentAmmoText.text = CurrentAmmo.ToString();
         TotalAmmoText.text   = _totalAmmo.ToString();
-        // WeponTransform.localRotation=cameraControl._characterHead.localRotation;
+        WeponTransform.rotation=cameraControl._characterHead.rotation;
         
    
         if (Input.GetMouseButtonDown(0) && !_reoled && CurrentAmmo > 0 && Time.time > fireCount && Availability)
