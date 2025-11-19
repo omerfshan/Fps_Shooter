@@ -74,7 +74,7 @@ public class MoveController : MonoBehaviour
     }
     private float MoveSpeed()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift)&&!WeponManager.instance._fire)
         {
             return RunSpeed;
         }

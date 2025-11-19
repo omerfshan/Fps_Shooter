@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class CrossHair : MonoBehaviour
 {
+  public static CrossHair instance;
   [SerializeField] private RectTransform Crooshair;
   [SerializeField] private float MaxSize;
   [SerializeField] private float MinSize;
   [SerializeField] private float CurrentSize;
   [SerializeField] private float Speed;
-  
+  public bool Availability;
+    void Awake()
+    {
+        instance=this;
+    }
     void Update()
     {
         bool walking = MoveController.instance.isWalking;
         bool running = MoveController.instance.isRuning;
 
-        if (running)
+        if (running||!Availability||WeponManager.instance.Aim)
         {
             SetDeactive();
             return;      
