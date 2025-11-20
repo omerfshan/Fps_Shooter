@@ -13179,13 +13179,13 @@ MonoBehaviour:
   AimPos: {x: 0, y: -0.065, z: 0.073}
   OriginalRot: {x: 0.0078071393, y: 0.017318297, z: 0.017318299, w: 0.99966955}
   AimRot: {x: 0, y: 0, z: 0, w: 0}
-  AimSpeed: 0
-  AimFOV: 0
-  OriginalFOV: 0
-  MinScatter: {x: 0, y: 0, z: 0, w: 0}
-  MaxScatter: {x: 0, y: 0, z: 0, w: 0}
-  MaxRecoil: {x: 0, y: 0}
-  MinRecoil: {x: 0, y: 0}
+  AimSpeed: 10
+  AimFOV: 60
+  OriginalFOV: 50
+  MinScatter: {x: 0.03607422, y: 0.03363976, z: 0.03363976, w: 0.9982161}
+  MaxScatter: {x: 0.0065874946, y: 0.0065018227, z: 0.0065018227, w: 0.9999361}
+  MaxRecoil: {x: 1.25, y: 0.75}
+  MinRecoil: {x: -1.25, y: 0.35}
 --- !u!1 &2029003308
 GameObject:
   m_ObjectHideFlags: 0

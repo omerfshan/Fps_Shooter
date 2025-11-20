@@ -57,6 +57,12 @@ public class WeponManager : MonoBehaviour
     [SerializeField] private Vector2 MinRecoil;
     [SerializeField] private Recoil cameraRecoil;
 
+    [Header("WeaponSlots")]
+    [SerializeField] WeponVariables WeponSlot_1;
+    [SerializeField] WeponVariables WeponSlot_2;
+    [SerializeField] WeponVariables WeponSlot_3;
+    [SerializeField] WeponVariables WeponSlot_4;
+
 
     void Awake()
     {
@@ -300,6 +306,28 @@ public class WeponManager : MonoBehaviour
         CameraControl.instance.AddRecoll(x,y);
     }
 
+    private void ChangeWeapon(WeponVariables Weapon)
+    {
+        if (Weapon.WeponParent != _currenyWeaponParent)
+        {
+            _currenyWeaponParent.gameObject.SetActive(false);
+            Weapon.WeponParent.gameObject.SetActive(true);
+            _currenyWeaponParent=Weapon.WeponParent;
+            
+            
+            _anim=Weapon.Animation;
+            fireFreq=Weapon.fireFreq;
+            fireRange=Weapon.fireRange;
 
+            MaxAmmo=Weapon.MaxAmmo;
+            ammoType=Weapon.types;
+            muzzle=Weapon.muzzle;
+            shell=Weapon.shell;
+
+            OriginalPos=Weapon.OriginalPos;
+            AimPos=Weapon.AimPos;
+
+        }
+    }
     
 }
