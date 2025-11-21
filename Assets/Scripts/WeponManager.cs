@@ -19,7 +19,7 @@ public class WeponManager : MonoBehaviour
    [SerializeField] private string _reoled_ID;
    [SerializeField] private string _Anim_ID;
     [Header("Fire")]
-    [HideInInspector] public bool _fire;
+     public bool _fire;
     [SerializeField] private ParticleSystem muzzle;
     [SerializeField] private ParticleSystem shell;
     [SerializeField] private float fireFreq;
@@ -108,7 +108,7 @@ public class WeponManager : MonoBehaviour
         WeponTransform.rotation=cameraControl._characterHead.rotation;
         
    
-        if (Input.GetMouseButtonDown(0) && !_reoled && CurrentAmmo > 0 && Time.time > fireCount && Availability)
+        if (Input.GetMouseButton(0) && !_reoled && CurrentAmmo > 0 && Time.time > fireCount && Availability)
         {
             StartFire();
         }
@@ -127,6 +127,16 @@ public class WeponManager : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
            SetAimBool();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1)&&WeponSlot_1!=null)
+        {
+            ChangeWeapon(WeponSlot_1);
+
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2)&&WeponSlot_2!=null)
+        {
+            ChangeWeapon(WeponSlot_2);
+            
         }
     }
     private void SetAimBool()
@@ -241,7 +251,9 @@ public class WeponManager : MonoBehaviour
     }
      public  void EndReload()
     {
-        _reoled=false;
+        
+          Debug.Log("EndReload");  // test için
+        _reoled = false;
         _anim.setBool(_reoled_ID,_reoled);
         int Amount=SetReloadAmount(_totalAmmo);
         CurrentAmmo+=Amount;
@@ -307,27 +319,48 @@ public class WeponManager : MonoBehaviour
     }
 
     private void ChangeWeapon(WeponVariables Weapon)
+{
+    if (Weapon.WeponParent != _currenyWeaponParent)
     {
-        if (Weapon.WeponParent != _currenyWeaponParent)
-        {
-            _currenyWeaponParent.gameObject.SetActive(false);
-            Weapon.WeponParent.gameObject.SetActive(true);
-            _currenyWeaponParent=Weapon.WeponParent;
-            
-            
-            _anim=Weapon.Animation;
-            fireFreq=Weapon.fireFreq;
-            fireRange=Weapon.fireRange;
+        // --- state reset ---
+        _fire   = false;
+        _reoled = false;
 
-            MaxAmmo=Weapon.MaxAmmo;
-            ammoType=Weapon.types;
-            muzzle=Weapon.muzzle;
-            shell=Weapon.shell;
+        _currenyWeaponParent.gameObject.SetActive(false);
+        Weapon.WeponParent.gameObject.SetActive(true);
+        _currenyWeaponParent = Weapon.WeponParent;
 
-            OriginalPos=Weapon.OriginalPos;
-            AimPos=Weapon.AimPos;
+        _anim = Weapon.Animation;
 
-        }
+        // yeni animatörde de parametreleri temizle
+        _anim.setBool(_fire_ID,   false);
+        _anim.setBool(_fire_2_ID, false);
+        _anim.setBool(_reoled_ID, false);
+
+        fireFreq  = Weapon.fireFreq;
+        fireRange = Weapon.fireRange;
+
+        MaxAmmo   = Weapon.MaxAmmo;
+        ammoType  = Weapon.types;
+        muzzle    = Weapon.muzzle;
+        shell     = Weapon.shell;
+
+        OriginalPos = Weapon.OriginalPos;
+        AimPos      = Weapon.AimPos;
+        OriginalRot = Weapon.OriginalRot;
+        AimRot      = Weapon.AimRot;
+        AimSpeed    = Weapon.AimSpeed;
+
+        OriginalFOV = Weapon.OriginalFOV;
+        AimFOV      = Weapon.AimFOV;
+
+        MaxScatter  = Weapon.MaxScatter;
+        MinScatter  = Weapon.MinScatter;
+
+        MaxRecoil   = Weapon.MaxRecoil;
+        MinRecoil   = Weapon.MinRecoil;
     }
+}
+
     
 }

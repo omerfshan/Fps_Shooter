@@ -23,7 +23,7 @@ public class WeponVariables : MonoBehaviour
  public  Quaternion AimRot;
  public  float AimSpeed;
  public  float AimFOV;
-[SerializeField] float OriginalFOV;
+public float OriginalFOV;
 [Header("Bullet Scatter")]
  public  Quaternion MinScatter;
  public  Quaternion MaxScatter;
