@@ -63,6 +63,7 @@ public class WeponManager : MonoBehaviour
     [SerializeField] WeponVariables WeponSlot_2;
     [SerializeField] WeponVariables WeponSlot_3;
     [SerializeField] WeponVariables WeponSlot_4;
+    
 
 
     void Awake()
@@ -146,6 +147,7 @@ public class WeponManager : MonoBehaviour
     }
     private void SetAim()
     {
+
         if (Aim&!_reoled&&Availability)
         {
             _currenyWeaponParent.localPosition=Vector3.Lerp(_currenyWeaponParent.localPosition,AimPos,AimSpeed*Time.deltaTime);
