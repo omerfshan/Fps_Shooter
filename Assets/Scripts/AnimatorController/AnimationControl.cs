@@ -38,7 +38,7 @@ public class AnimationControl : MonoBehaviour, IAnimation
     {
         wp.WeponDown();
     }
-     public void SetAvailability(int index)
+    public void SetAvailability(int index)
     {
         wp.Availability=index==0?false:true;
     }

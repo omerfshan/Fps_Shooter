@@ -365,6 +365,10 @@ public class WeponManager : MonoBehaviour
         WeaponRecoil=Weapon.WeaponRecoil;
     }
 }
+public void ChangeWeapon(string WepoanName)
+    {
+        
+    }
 
     
 }
