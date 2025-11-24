@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1daab9a6db010d45bf52d1ab47767a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeponTransform: {fileID: 212095254}
+  WeponTransform: {fileID: 1035096639}
   _currenyWeaponParent: {fileID: 1794680338}
   cameraControl: {fileID: 495397807}
   _anim: {fileID: 919132148161618345}
@@ -188,11 +188,11 @@ MonoBehaviour:
   MaxAmmo: 17
   _totalAmmo: 0
   ammoType: 2
-  _5_56: 20
-  _7_62: 30
-  _9mm: 40
-  _45cal: 50
-  _12ga: 60
+  _5_56: 100
+  _7_62: 199
+  _9mm: 100
+  _45cal: 100
+  _12ga: 100
   decals:
   - {fileID: 1729630183304945182, guid: 5999695c15d8d444bba74c0564afe9e0, type: 3}
   - {fileID: 4502512788460563862, guid: 270d9d14960a09741aef934f8077ea26, type: 3}
@@ -220,6 +220,7 @@ MonoBehaviour:
   MaxRecoil: {x: 1, y: 0.5}
   MinRecoil: {x: -1, y: 0.25}
   cameraRecoil: {fileID: 495397811}
+  WeaponRecoil: {fileID: 1794680340}
   WeponSlot_1: {fileID: 1794680339}
   WeponSlot_2: {fileID: 1989309522}
   WeponSlot_3: {fileID: 0}
@@ -2877,7 +2878,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.4
+      scalar: 0.6
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -8324,7 +8325,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.62
+      scalar: 0.4
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -12888,6 +12889,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1794680338}
   - component: {fileID: 1794680339}
+  - component: {fileID: 1794680340}
   m_Layer: 7
   m_Name: Baretta
   m_TagString: Untagged
@@ -12929,7 +12931,7 @@ MonoBehaviour:
   Animation: {fileID: 919132148161618345}
   fireFreq: 0.3
   fireRange: 100
-  MaxAmmo: 17
+  MaxAmmo: 30
   types: 2
   muzzle: {fileID: 619185101}
   shell: {fileID: 1787450937}
@@ -12942,8 +12944,31 @@ MonoBehaviour:
   OriginalFOV: 60
   MinScatter: {x: 0.008802022, y: 0.008649721, z: 0.008649721, w: 0.9998864}
   MaxScatter: {x: 0.03607422, y: 0.03363976, z: 0.03363976, w: 0.9982161}
+  CurrentAmmo: 0
   MaxRecoil: {x: 1, y: 0.5}
   MinRecoil: {x: -1, y: 0.25}
+  WeaponRecoil: {fileID: 1794680340}
+--- !u!114 &1794680340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794680337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 972b2ad1483351e47a9c4978f300f0b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxTargetPos: {x: 0, y: 0, z: -0.1}
+  MinTargetPos: {x: 0, y: 0, z: -0.3}
+  SlideSpeed: 20
+  LerpSpeed: 4
+  _target: {fileID: 543450652418833181}
+  MaxTargetRot: {x: 0, y: 0, z: 0}
+  MinTargetRot: {x: 0, y: 0, z: 0}
+  RotSlideSpeed: 20
+  RotLerpSpeed: 4
 --- !u!1 &1803421445
 GameObject:
   m_ObjectHideFlags: 0
@@ -13135,6 +13160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1989309521}
   - component: {fileID: 1989309522}
+  - component: {fileID: 1989309523}
   m_Layer: 7
   m_Name: Ak-47
   m_TagString: Untagged
@@ -13175,7 +13201,7 @@ MonoBehaviour:
   Animation: {fileID: 5373286624008788776}
   fireFreq: 0.1
   fireRange: 100
-  MaxAmmo: 1000
+  MaxAmmo: 30
   types: 1
   muzzle: {fileID: 1716498314}
   shell: {fileID: 1041762658}
@@ -13188,8 +13214,31 @@ MonoBehaviour:
   OriginalFOV: 50
   MinScatter: {x: 0.0065874937, y: 0.006501823, z: 0.0065018227, w: 0.9999361}
   MaxScatter: {x: 0.03607423, y: 0.033639755, z: 0.033639755, w: 0.9982161}
+  CurrentAmmo: 30
   MaxRecoil: {x: 1.25, y: 0.75}
   MinRecoil: {x: -1.25, y: 0.35}
+  WeaponRecoil: {fileID: 1989309523}
+--- !u!114 &1989309523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989309520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 972b2ad1483351e47a9c4978f300f0b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxTargetPos: {x: 0, y: 0, z: -0.45}
+  MinTargetPos: {x: 0, y: 0, z: -0.5}
+  SlideSpeed: 20
+  LerpSpeed: 4
+  _target: {fileID: 4745227322076332445}
+  MaxTargetRot: {x: 0, y: 0, z: 0}
+  MinTargetRot: {x: 0, y: 0, z: 0}
+  RotSlideSpeed: 20
+  RotLerpSpeed: 4
 --- !u!1 &2029003308
 GameObject:
   m_ObjectHideFlags: 0

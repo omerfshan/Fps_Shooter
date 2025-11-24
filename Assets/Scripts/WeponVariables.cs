@@ -27,11 +27,12 @@ public float OriginalFOV;
 [Header("Bullet Scatter")]
  public  Quaternion MinScatter;
  public  Quaternion MaxScatter;
+ public int CurrentAmmo;
      
   [Header("Recoil")]
  public  Vector2 MaxRecoil;
  public  Vector2 MinRecoil;
-   
+  public Recoil WeaponRecoil;
 
 
 }

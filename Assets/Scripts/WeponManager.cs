@@ -56,6 +56,7 @@ public class WeponManager : MonoBehaviour
     [SerializeField] private Vector2 MaxRecoil;
     [SerializeField] private Vector2 MinRecoil;
     [SerializeField] private Recoil cameraRecoil;
+    [SerializeField] private Recoil WeaponRecoil;
 
     [Header("WeaponSlots")]
     [SerializeField] WeponVariables WeponSlot_1;
@@ -145,7 +146,7 @@ public class WeponManager : MonoBehaviour
     }
     private void SetAim()
     {
-        if (Aim)
+        if (Aim&!_reoled&&Availability)
         {
             _currenyWeaponParent.localPosition=Vector3.Lerp(_currenyWeaponParent.localPosition,AimPos,AimSpeed*Time.deltaTime);
             _currenyWeaponParent.localRotation=Quaternion.Lerp(_currenyWeaponParent.localRotation,AimRot,AimSpeed*Time.deltaTime);
@@ -215,6 +216,7 @@ public class WeponManager : MonoBehaviour
             shell.Play();
             setRecol();
             cameraRecoil.SetTarget();
+            WeaponRecoil.SetTarget();
 
         }
     }
@@ -328,8 +330,9 @@ public class WeponManager : MonoBehaviour
 
         _currenyWeaponParent.gameObject.SetActive(false);
         Weapon.WeponParent.gameObject.SetActive(true);
+         _currenyWeaponParent.GetComponent<WeponVariables>().CurrentAmmo=CurrentAmmo;;
         _currenyWeaponParent = Weapon.WeponParent;
-
+       
         _anim = Weapon.Animation;
 
         // yeni animatörde de parametreleri temizle
@@ -353,12 +356,13 @@ public class WeponManager : MonoBehaviour
 
         OriginalFOV = Weapon.OriginalFOV;
         AimFOV      = Weapon.AimFOV;
-
+        CurrentAmmo=Weapon.CurrentAmmo;
         MaxScatter  = Weapon.MaxScatter;
         MinScatter  = Weapon.MinScatter;
 
         MaxRecoil   = Weapon.MaxRecoil;
         MinRecoil   = Weapon.MinRecoil;
+        WeaponRecoil=Weapon.WeaponRecoil;
     }
 }
 
