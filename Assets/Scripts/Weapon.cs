@@ -7,6 +7,6 @@ public class Weapon : MonoBehaviour, Iinteractable
 
     public void Interact()
     {
-        throw new System.NotImplementedException();
+        WeponManager.instance.PickWeapon(_name);
     }
 }

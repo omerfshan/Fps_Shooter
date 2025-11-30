@@ -64,7 +64,7 @@ public class WeponManager : MonoBehaviour
     [SerializeField] WeponVariables WeponSlot_3;
     [SerializeField] WeponVariables WeponSlot_4;
     
-
+    [SerializeField] WeponVariables[] AllWeapon;
 
     void Awake()
     {
@@ -367,9 +367,28 @@ public class WeponManager : MonoBehaviour
         WeaponRecoil=Weapon.WeaponRecoil;
     }
 }
-public void ChangeWeapon(string WepoanName)
+public void PickWeapon(string WepoanName)
     {
-        
+        WeponVariables SelectedWeapon=null;
+        for (int i = 0; i < AllWeapon.Length; i++)
+        {
+            if (AllWeapon[i].WeponID == WepoanName)
+            {
+                SelectedWeapon=AllWeapon[i];
+            }
+        }
+        if (WeponSlot_2 == null)
+        {
+            WeponSlot_2=SelectedWeapon;
+            ChangeWeapon(WeponSlot_2);
+        }
+        else
+        {
+            if (_currenyWeaponParent.GetComponent<WeponVariables>().WeponID == WeponSlot_1.WeponID)
+            {
+                
+            }
+        }
     }
 
     
